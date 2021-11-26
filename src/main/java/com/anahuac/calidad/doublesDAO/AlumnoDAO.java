@@ -1,9 +1,9 @@
 package com.anahuac.calidad.doublesDAO;
 
 public interface AlumnoDAO {
-    public boolean addAlumno(Alumno a);
-    public boolean deleteAlumno(Alumno a);
-    public boolean updateEmail(Alumno a);
+    public Boolean addAlumno(Alumno a);
+    public Boolean deleteAlumno(Alumno a);
+    public Boolean updateEmail(Alumno a);
     public Alumno consultarAlumno(String id);
 
 }
