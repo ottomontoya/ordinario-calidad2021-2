@@ -1,2 +1,3 @@
-# test-travis-ci
-Ordinario
+# Ordinario de Otto Montoya
+## Para la materia de Calidad y Pruebas de Software
+
