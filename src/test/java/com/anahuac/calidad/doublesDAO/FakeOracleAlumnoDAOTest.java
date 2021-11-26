@@ -1,77 +1,80 @@
 package com.anahuac.calidad.doublesDAO;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+// Import HasMap
+import java.util.HashMap;
+//Import mockito
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
-
-
-import java.util.HashMap;
-
-import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.*;
+//Import hamcrest
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
 
 public class FakeOracleAlumnoDAOTest {
+	
+	private FakeOracleAlumnoDAO DAO;
+	// Initialize HashMap
+	public HashMap <String, Alumno> alumnos; 
+	// Create student
+	Alumno alumno1; 
+	// Act email
+	String nuevoCorreo = "nuevocorreo@hola.com";
 
-    private FakeOracleAlumnoDAO dao;
-    public HashMap<String, Alumno> alumnos;
+	@Before
+	public void setUp() throws Exception {
+		DAO = Mockito.mock(FakeOracleAlumnoDAO.class);
+		alumnos = new HashMap <String, Alumno>();
+		// Declare the object with parameters
+		alumno1 = new Alumno("001","nombre", "micorreo2@hola.com", 23); 
+		
+	}
 
-    @Before
-    public void setUp() throws Exception {
-        dao = Mockito.mock(FakeOracleAlumnoDAO.class);
-        alumnos = new HashMap<String, Alumno>();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
-
-    @Test
-    public void addAlumnoTest(){
-
-        int cuantosAntes = alumnos.size();
-        System.out.println("Size antes = " + cuantosAntes);
-        Alumno alumno1 = new Alumno("nombre", "001", 20, "micorreo@hola.com");
-
-        /*
-        para booleans
-        when(dao.addAlumno(any(Alumno.class))).thenAnswer(
-            new Answer<Boolean>(){
-                public Boolean answer(InvocationOnMock invocation) throws Throwable {
-                    Alumno arg = (Alumno) invocation.getArguments()[0];
-                    alumnos.put(anyString(), arg);
-                    System.out.println("Size despues = " + alumnos.size());
-                    return true;
-                }
-            }
-        );
-        */
-
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                Alumno arg = (Alumno) invocation.getArguments()[0];
-                alumnos.put(anyString(), arg);
-                System.out.println("Size despues = " + alumnos.size());
-                return null;
-            }
-        }).when(dao).addAlumno(any(Alumno.class));
-
-        dao.addAlumno(alumno1);
-        int cuantosDespues = alumnos.size();
-
-        assertThat(cuantosAntes + 1, is(cuantosDespues));
-    }
-
-    // DAO Delete Student
+	@After
+	public void tearDown() throws Exception {
+	}
+	
+	
+	// DAO Add Student
+	@Test
+	public void addAlumno_test() {
+		
+		// Set the value of students before adding a new one
+		int cuantosAntes = alumnos.size(); 
+		System.out.println("Add Alumno Mock"); 
+		System.out.println("Size antes=" + cuantosAntes); 
+		
+		// Set behaviors 
+		when(DAO.addAlumno(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
+			// Method within the class
+			public Boolean answer(InvocationOnMock invocation) throws Throwable{
+				// Set behavior in every invocation 
+				Alumno arg = (Alumno) invocation.getArguments()[0]; 
+				alumnos.put(anyString(), arg); 
+				System.out.println("Size despues=" + alumnos.size() + "\n"); 
+				// Return the invoked value
+				return true; 
+				}
+			}
+		);
+		// Call the method and add one student
+		DAO.addAlumno(alumno1);
+		int cuantosDesp = alumnos.size(); 
+		assertThat(cuantosAntes+1,is(cuantosDesp)); 	
+	}
+	
+	
+	// DAO Delete Student
 	@Test
 	public void deleteAlumno_test() {
 		
