@@ -71,32 +71,89 @@ public class FakeOracleAlumnoDAOTest {
         assertThat(cuantosAntes + 1, is(cuantosDespues));
     }
 
-    @Test
-    public void deleteAlumnoTest(){
-        int cuantosAntes = alumnos.size();
-        System.out.println("Size antes = " +  cuantosAntes);
-        final Alumno alumno1 = new Alumno("nombre", "001", 20, "micorreo@hola.com");
+    // DAO Delete Student
+	@Test
+	public void deleteAlumno_test() {
+		
+		// Put the student in the hashmap
+		alumnos.put("001", alumno1); 
+		// Set the value of students before deleting an student
+		int cuantosAntes = alumnos.size(); 
+		System.out.println("Delete Alumno Mock"); 
+		System.out.println("Size antes=" + cuantosAntes); 
+		
+		// Set behaviors 
+		when(DAO.deleteAlumno(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
+			// Method within the class
+			public Boolean answer(InvocationOnMock invocation) throws Throwable{
+				// Set behavior in every invocation 
+				Alumno arg = (Alumno) invocation.getArguments()[0]; 
+				alumnos.remove(arg.getId(), arg); 
+				System.out.println("Size despues=" + alumnos.size() + "\n"); 
+				// Return the invoked value
+				return true; 
+				}
+			}
+		);
+		// Call the method and add one student
+		DAO.deleteAlumno(alumno1);
+		int cuantosDesp = alumnos.size(); 
+		assertThat(cuantosAntes-1,is(cuantosDesp)); 
+	}
+	
+	
+	// DAO Update Email
+	@Test
+	public void updateEmail_test() {
+		// Put the student in the hashmap
+		alumnos.put("001", alumno1); 
+		// Set the value of students before deleting an student
+		String correoActual = alumno1.getEmail(); 
+		System.out.println("Update Email "); 
+		System.out.println("Correo actual= " + correoActual); 
+		
+		// Set behaviors 
+		when(DAO.updateEmail(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
+			// Method within the class
+			public Boolean answer(InvocationOnMock invocation) throws Throwable{
+				// Set behavior in every invocation 
+				Alumno arg = (Alumno) invocation.getArguments()[0]; 
+				alumnos.replace(arg.getId(), arg); 
+				// Return the invoked value
+				return true; 
+				}
+			}
+		);
+		// Call the method and add one student
+		alumno1.setEmail(nuevoCorreo);
+		DAO.updateEmail(alumno1);
+		assertThat(correoActual,is(not(nuevoCorreo)));
+		System.out.println("Correo Actualizado= " + nuevoCorreo + "\n");  
+	} 
+	
+	
+	// DAO search Student
+	@Test
+	public void searchAlumno_test() { 			
+		System.out.println("Search Alumno"); 
+		// Set behaviors 
+		when(DAO.searchAlumno(anyString())).thenAnswer(new Answer<Alumno>() {
+			// Method within the class
+			public Alumno answer(InvocationOnMock invocation) throws Throwable{
+				// Set behavior in every invocation 
+				String arg = (String) invocation.getArguments()[0]; 
+				// Return the invoked value
+				return alumno1; 
+				}
+			}
+		);
+		// Call the method and add one student
+		Alumno alumnoRes = DAO.searchAlumno("001");
+		assertThat(alumno1.getId(), is(alumnoRes.getId()));
+		assertThat(alumno1.getEdad(), is(alumnoRes.getEdad()));
+		assertThat(alumno1.getNombre(), is(alumnoRes.getNombre()));
+		assertThat(alumno1.getEmail(), is(alumnoRes.getEmail()));
+		System.out.println("Alumno encontrado"+ "\n"); 
+	}
 
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                Alumno arg = (Alumno) invocation.getArguments()[0];
-                alumnos.put(anyString(), arg);
-                System.out.println("Size despues = " + alumnos.size());
-                return null;
-            }
-        }).when(dao).addAlumno(any(Alumno.class));
-        dao.addAlumno(alumno1);
-
-        doAnswer(new Answer(){
-            public Object answer(InvocationOnMock invocation){
-                Alumno arg = (Alumno) invocation.getArguments()[0];
-                alumnos.remove(alumno1);
-                System.out.println("Size despues = " + alumnos.size());
-                return null;
-            }
-        }).when(dao).deleteAlumno(any(Alumno.class));
-        dao.deleteAlumno(alumno1);
-
-
-    }
 }
