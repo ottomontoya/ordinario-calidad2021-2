@@ -19,7 +19,7 @@ public class DAOAlumnoTest extends DBTestCase {
 
     public DAOAlumnoTest(){
         System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "com.mysql.cj.jdbc.Driver");
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:mysql://localhost:127.0.0.1/pruebas_db");
+        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:mysql://localhost:33060/pruebas_db");
         System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "travis");
         System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "");
     }
