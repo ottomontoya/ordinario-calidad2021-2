@@ -15,3 +15,8 @@ before_install:
               constraint alumnos_tbl_pk
               primary key (ID)
               );'
+
+  addons:
+    browserstack:
+      username: "ottomontoya_w3vj9h"
+      access_key: "tR9y6LGtyQjKzMwME1Sd"
