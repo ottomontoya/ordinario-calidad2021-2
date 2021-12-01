@@ -12,7 +12,7 @@ public class AlumnoDAOMySQL implements AlumnoDAO{
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:33060/pruebas_db", "root", "secret"
+                    "jdbc:mysql://localhost:127.0.0.1/pruebas_db", "travis", ""
             );
         } catch (Exception e) {
             System.out.println(e);
