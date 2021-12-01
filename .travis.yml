@@ -4,7 +4,6 @@ services:
   - mysql
 
 before_install:
-  - mysql -P, --port=33060
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS pruebas_db;'
   - mysql -e 'USE pruebas_db;
