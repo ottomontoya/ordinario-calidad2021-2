@@ -16,7 +16,7 @@ before_install:
               primary key (ID)
               );'
 
-  addons:
-    browserstack:
-      username: "ottomontoya_w3vj9h"
-      access_key: "tR9y6LGtyQjKzMwME1Sd"
+addons:
+  browserstack:
+  username: "ottomontoya_w3vj9h"
+    access_key: "tR9y6LGtyQjKzMwME1Sd"
