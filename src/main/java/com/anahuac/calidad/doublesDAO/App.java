@@ -33,6 +33,7 @@ public class App
             System.out.println(">> Return: " + result);
 
             con.close();
+
         } catch(Exception e){
             System.out.println(e);
         }
