@@ -27,7 +27,7 @@ public class AlumnoDAOMySQL implements AlumnoDAO{
         boolean result = false;
         try {
             preparedStatement = connection.prepareStatement(
-                    "insert INTO alumnos_tbl(id, nombre, email, edad) values (?, ?, ?, ?)"
+                    "insert INTO alumnos_tbl(ID, NOMBRE, EMAIL, EDAD) values (?, ?, ?, ?)"
             );
             preparedStatement.setString(1, a.getId());
             preparedStatement.setString(2, a.getNombre());
@@ -53,7 +53,7 @@ public class AlumnoDAOMySQL implements AlumnoDAO{
         boolean result = false;
 
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM alumno_tbl WHERE id = ?");
+            preparedStatement = connection.prepareStatement("DELETE FROM alumno_tbl WHERE ID = ?");
 
             preparedStatement.setString(1, a.getId());
 
@@ -75,7 +75,7 @@ public class AlumnoDAOMySQL implements AlumnoDAO{
         boolean result = false;
 
         try {
-            preparedStatement = connection.prepareStatement("UPDATE alumno:tbl SET email = ? WHERE id = ?");
+            preparedStatement = connection.prepareStatement("UPDATE alumnos_tbl SET EMAIL = ? WHERE ID = ?");
             preparedStatement.setString(1, a.getEmail());
             preparedStatement.setString(2, a.getId());
             if(preparedStatement.executeUpdate() >= 1){
@@ -99,7 +99,7 @@ public class AlumnoDAOMySQL implements AlumnoDAO{
         Alumno retrieved = null;
 
         try{
-            preparedStatement = connection.prepareStatement("SELECT * FROM alumno_tbl WHERE id = ?");
+            preparedStatement = connection.prepareStatement("SELECT * FROM alumnos_tbl WHERE ID = ?");
             preparedStatement.setString(1, id);
             rs = preparedStatement.executeQuery();
 
