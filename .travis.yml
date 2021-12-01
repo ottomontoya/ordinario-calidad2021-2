@@ -6,7 +6,7 @@ services:
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS pruebas_db;'
-  - mysql use pruebas_db
+  - mysql -D, ---D, --database=pruebas_db
   - mysql -e 'CREATE TABLE IF NOT EXISTS alumnos_tbl(
     id varchar(10) not null,
     name varchar(50) not null,
