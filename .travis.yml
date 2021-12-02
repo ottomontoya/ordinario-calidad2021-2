@@ -22,5 +22,3 @@ before_install:
               primary key (ID)
               );'
 
-addons:
-  chrome: stable
