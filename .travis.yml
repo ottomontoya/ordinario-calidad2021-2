@@ -18,5 +18,5 @@ before_install:
 
 addons:
   browserstack:
-  username: "ottomontoya_w3vj9h"
+    username: "ottomontoya_w3vj9h"
     access_key: "tR9y6LGtyQjKzMwME1Sd"
