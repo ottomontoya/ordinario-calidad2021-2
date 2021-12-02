@@ -89,7 +89,7 @@ public class mernCrudTest {
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
         wait(3);
         String tag = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/form/div[4]/div/div")).getText();
-        assertThat("Nice!", is(tag));
+        assertThat("Nice one!", is(tag));
     }
 
 
