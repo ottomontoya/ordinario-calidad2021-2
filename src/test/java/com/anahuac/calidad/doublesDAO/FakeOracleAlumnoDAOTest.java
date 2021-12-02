@@ -56,17 +56,6 @@ public class FakeOracleAlumnoDAOTest {
             }
         );
 
-        /*
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                Alumno arg = (Alumno) invocation.getArguments()[0];
-                alumnos.put("001", arg);
-                System.out.println("Size despues = " + alumnos.size());
-                return null;
-            }
-        }).when(dao).addAlumno(any(Alumno.class));
-        */
-
         dao.addAlumno(alumno1);
         int cuantosDespues = alumnos.size();
 

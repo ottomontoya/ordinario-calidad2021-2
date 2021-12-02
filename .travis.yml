@@ -1,14 +1,18 @@
+# agregamos java como lenguaje principal
 language: java
 
+# se agregan mysql y xvfb como servicio para las pruebas de dbunit y funcionales
 services:
   - mysql
   - xvfb
 
+# un before script para que instale chrome
 before_script:
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome-stable_current_amd64.deb
   - sudo apt-get install -f
 
+# before install para que cree la base de datos
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS pruebas_db;'
@@ -19,6 +23,5 @@ before_install:
               email varchar(100) not null,
               edad int not null,
               constraint alumnos_tbl_pk
-              primary key (ID)
+              primary key (id)
               );'
-

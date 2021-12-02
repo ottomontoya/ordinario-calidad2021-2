@@ -1,3 +1,4 @@
+# se agrega esto segun la documentacion de travis
 test:
   adapter: mysql2
   database: pruebas_db
