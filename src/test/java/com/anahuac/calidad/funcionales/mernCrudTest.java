@@ -99,7 +99,6 @@ public class mernCrudTest {
         driver.get("https://mern-crud.herokuapp.com/");
 
         String email = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/table/tbody/tr[1]/td[2]")).getText();
-        System.out.println(email);
         wait(3);
         driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/table/tbody/tr[1]/td[5]/button[2]")).click();
         wait(3);
